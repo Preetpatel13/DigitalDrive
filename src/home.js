@@ -15,14 +15,14 @@ import shared_me from './logos/shared_me.png';
 import Footer from './footer'
 import Ourteam from './ourteam';
 import  { useState } from 'react';
-
-
+//import FileUpload from './fileupload.js';
+import Sidebar from './sidebar';
 
 //import { ExpandMore} from '@mui/icons-material';
 import '../src/home.css';
 import Navbar1 from "./Navbar1";
 import Login from "./login";
-
+import File from './fileupload'
 import App1 from "./uploaded";
 
 function BasicExample() {
@@ -38,62 +38,24 @@ function BasicExample() {
 <div className="main">
 {/* 
     <Navbar1 /> */}
-    <Navbar1 handleLoginClick={handleLoginClick} />
+    {/* <Navbar1 handleLoginClick={handleLoginClick} />
       <Contact/>
-      <Preet1/>
-   {/* <App1 /> */}
-    
+      <Preet1/> */}
+       {/* <App1 /> */}
    
+<Navbar/>
+<File/>
+
+<Sidebar></Sidebar>
+
+<Ourteam />
 
 
 
 
-
-
-
-
-<div className="sidebar">
-
-<div className="sidebar_icon">
-
-
-<div className="flx">
-  <img src={up_file} alt="up_file" />
-<span className="text">Upload File</span>
-</div>
-  
-<div className="flx">
-<img src={up_folder} alt="up_folder" />
-<span className="text">Upload folder </span>
-</div>
-
-<div className="flx">
-<img src={up_vedio} alt="up_vedio" />
-<span className="text">Upload vedio</span>
-</div>
-
-
-<div className="flx">
-<img src={shared_me} alt="shared_me" />
-<span className="text">shared with me</span>
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-</div>
 {/* <Footer /> */}
 
 <Login isShowLogin={isShowLogin} />
-
-<Ourteam />
 
 
 </div>

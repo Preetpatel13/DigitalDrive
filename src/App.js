@@ -5,6 +5,7 @@ import Home from './home';
 import H from './h';
 import Navbar1 from './Navbar1';
 import './login.css';
+import Register from '..//src//register/register';
 import {BrowserRouter,Route, Routes,useNavigate} from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -22,7 +23,7 @@ function App() {
        <Route path='/Navbar1' exact element={<Navbar1 />}></Route>
        <Route path="/home" exact element={<Home/>}></Route>
        <Route path="/h" exact element={<H/>}></Route>   
-    
+    <Route path ="/" exact element ={<Register/>}></Route>
     </Routes> 
     </BrowserRouter>
   
