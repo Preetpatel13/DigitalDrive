@@ -11,6 +11,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Ourteam from './ourteam';
+import ListElements from './listfile'
 function App() {
 //const navigate= useNavigate();
 
@@ -21,9 +22,9 @@ function App() {
   
    <Routes>   
        <Route path='/Navbar1' exact element={<Navbar1 />}></Route>
-       <Route path="/home" exact element={<Home/>}></Route>
+       <Route path="/" exact element={<Home/>}></Route>
        <Route path="/h" exact element={<H/>}></Route>   
-    <Route path ="/" exact element ={<Register/>}></Route>
+      <Route path ="/listfile" exact element ={<ListElements/>}></Route>
     </Routes> 
     </BrowserRouter>
   
