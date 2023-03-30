@@ -1,0 +1,30 @@
+.main{
+background: fixed;
+background-color: black;
+background-position: absolute;
+
+
+
+}
+
+
+.form1{
+
+height: 100px;
+background-color: rgb(191, 118, 211);
+border: 2px solid black;
+border-radius: 2px;
+
+}
+
+.form1 .inp1{
+
+    width: 100px;
+    height: 20px;
+    border-radius: 5px;
+    border:2px solid black;
+    
+
+
+
+}

@@ -1,7 +1,7 @@
 import { DistributeVertical } from "react-bootstrap-icons";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import Navbar from "./Navbar1.jsx";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import * as Icon from "react-bootstrap-icons";
 import logo1 from './logo1.png';
@@ -17,6 +17,8 @@ import Ourteam from './ourteam';
 import  { useState } from 'react';
 //import FileUpload from './fileupload.js';
 import Sidebar from './sidebar';
+import './sidebar.css'
+
 
 //import { ExpandMore} from '@mui/icons-material';
 import '../src/home.css';
@@ -26,12 +28,7 @@ import File from './fileupload'
 import App1 from "./uploaded";
 
 function BasicExample() {
-  const [isShowLogin, setIsShowLogin] = useState(true);
-
-  const handleLoginClick = () => {
-    setIsShowLogin((isShowLogin) => !isShowLogin);
-  };
-
+  
 
   return (
 
@@ -44,18 +41,13 @@ function BasicExample() {
        {/* <App1 /> */}
    
 <Navbar/>
-<File/>
-
 <Sidebar></Sidebar>
-
-<Ourteam />
-
+ 
+<Ourteam /> 
 
 
 
 {/* <Footer /> */}
-
-<Login isShowLogin={isShowLogin} />
 
 
 </div>

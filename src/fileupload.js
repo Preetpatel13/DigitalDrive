@@ -1,9 +1,10 @@
 import React from 'react';
 import {setUsers,useEffect} from 'react';
+import './fileupload.css'
 //import {setFileUrl} from 'firebase'
-import  { app, storageRef, ref, uploadBytes } from './base.js'
+import  { app, storage,storageRef, ref, uploadBytes } from './base.js'
 function File(){
-    const userID = "preet123"
+   const userID = "preet123"
     //const db = app.firestore();
 
     const onFileChange = async (e) => {
@@ -15,6 +16,7 @@ function File(){
                });
               
     
+
         //setFileUrl(await fileRef.getDownloadURL());
       };
     
@@ -63,14 +65,18 @@ function File(){
     
     return(
 
-        <>
-        <form onSubmit={onSubmit}>
-<input type="file" onChange={onFileChange} />
-<input type="text" name="username" placeholder="Name"/>
-<button type="submit">Upload</button>
+        <div class='main1'>
+
+
+        <form  class="form1" onSubmit={onSubmit}>
+<input type="file" class="inp" onChange={onFileChange} />
+<button class="btn1" type="submit">Upload</button>
+
         </form>
         
-        </>
+
+
+        </div>
 
     );
 }

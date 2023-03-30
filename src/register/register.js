@@ -1,17 +1,30 @@
 import React from 'react'
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
-function register() {
-  return (
+function Register() {
+const navigate = useNavigate();
+
+    return (
     <div>
-      
-<h1>hello today we will be doiinn authentiacation</h1>
-
+    <div>
+      <StyledButton onClick={()=> navigate('/login')}> login </StyledButton>
+      </div>
 
     </div>
   )
 }
 
-export default register
+export default Register
+
+
+const StyledButton = styled.button`
+
+margin-top:10px;
+color:red;
+background-color:blue; 
 
 
 
+`

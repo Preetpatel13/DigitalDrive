@@ -7,7 +7,7 @@ import { initializeApp } from 'firebase/app';
 import 'firebase/compat/storage';
 //port { getApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from  'firebase/storage';
-
+import {getAuth} from 'firebase/auth';
 const firebaseConfig = {
 
     
@@ -22,12 +22,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const authentication= getAuth(app);
 
-var storage = getStorage();
-
+const storage = getStorage();
 const storageRef = ref(storage);
 
-export  {app, storageRef, ref, uploadBytes}
+export  {app,storage, storageRef, ref, uploadBytes,authentication}
 
 
 //var db = firebaseApp.firestore();
