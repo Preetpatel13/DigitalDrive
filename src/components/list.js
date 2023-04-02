@@ -1,35 +1,39 @@
 import React from 'react';
-import {setUsers,useEffect} from 'react';
-import  { app, storageRef, ref, listAll } from '../Firebase/base.js'
+import {useState,useEffect} from 'react';
+import  { storageRef, ref, listAll } from '../Firebase/base.js'
+import { getDownloadURL } from 'firebase/storage';
 
 function ListElements(){
-    const userID = "preet123"
-    const fileRef = ref(storageRef, userID+ "/")
-    listAll(fileRef).then(function(listResult) {
-      listResult.items.forEach(function(itemRef) {
-        // Do something with the item reference
-        // itemRef.getMetadata()
-        // .then(function(metadata) {
-        //   // Do something with the metadata
-        //   console.log(metadata);
-        // })
-        // .catch(function(error) {
-        //   console.log('Error fetching metadata:', error);
-        // });
+  const userID = "preet123"
+  const fileRef = ref(storageRef, userID + "/")
 
-        itemRef.getDownloadURL()
-        .then(function(url) {
-          // Do something with the download URL
-          console.log(url);
-        })
-        .catch(function(error) {
-          console.log('Error fetching download URL:', error);
-        });
-        
-      });
-    })
-    .catch(function(error) {
-      console.log('Error fetching data:', error);
+  const [files, setFiles] = useState([]);
+
+  useEffect(() => {
+    // List all files in the bucket
+    listAll(fileRef).then((result) => {
+      const promises = result.items.map((item) => getDownloadURL(item));
+      return Promise.all(promises);
+    }).then((urls) => {
+      setFiles(urls);
+    }).catch((error) => {
+      console.log(error);
     });
+  }, []);
+  return (
+    <div>
+      <h1>List of files</h1>
+      <ul>
+        
+        {files.map((url, index) => (
+          <li key={index}>
+            <a href={url} target="_blank" rel="noopener noreferrer">{/*GetFileIcon*/url}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+
 }
+
 export default ListElements;

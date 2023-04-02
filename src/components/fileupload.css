@@ -1,29 +1,27 @@
 .main{
 background: fixed;
 background-position: absolute;
-
-
-
 }
 
 
 .form1{
-
+margin: 200px;
 height: 100px;
-background-color: rgb(191, 118, 211);
-border: 2px solid black;
-border-radius: 2px;
+width: 1000px;
+background-color:#00629b;
+border: 5px solid black;
+border-radius: 8px;
+text-align: center;
 
 }
 
-.form1 .inp1{
+.form1 .inp{
 
-    width: 100px;
-    height: 20px;
-    border-radius: 5px;
-    border:2px solid black;
+    /* width: 150px; */
+    height: 30px;
+    margin: 32px;
+    font-size: 25px;
+    /* border-radius: 5px; */
+    /* border:2px solid black; */
     
-
-
-
 }

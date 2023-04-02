@@ -14,10 +14,6 @@ function File(){
       await uploadBytes(fileRef, file).then((snapshot) => {
                  console.log('Uploaded a blob or file!');
                });
-              
-    
-
-        //setFileUrl(await fileRef.getDownloadURL());
       };
     
 //     const onFileChange = acync () => {

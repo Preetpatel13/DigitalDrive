@@ -1,14 +1,11 @@
 import { useState } from "react";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import "../App.css";
-import { auth } from "../Firebase/base.js";
+import { collection, addDoc, doc, getDoc } from "firebase/firestore";
+import { auth,db } from "../Firebase/base.js";
 
 function Log() {
+  const [registerName, setRegisterName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
@@ -27,9 +24,18 @@ function Log() {
         registerEmail,
         registerPassword
       );
-      console.log(user);
+      console.log('User Created'+':  :'+user);
+      try {
+        const docRef = await addDoc(collection(db, "user_data"), {
+          email: registerEmail,
+          name: registerName,
+        });
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
     } catch (error) {
-      console.log(error.message);
+      console.log('Error adding User: ' + error.message);
     }
   };
 
@@ -40,7 +46,17 @@ function Log() {
         loginEmail,
         loginPassword
       );
-      console.log(user);
+      console.log('Logged in as: ' + loginEmail+':  :'+user)
+
+      const docRef = doc(db, "user_data", loginEmail);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        console.log("Document data:", docSnap.data());
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -55,12 +71,21 @@ function Log() {
       <div>
         <h3> Register User </h3>
         <input
+          type="text"
+          placeholder="Name..."
+          onChange={(event) => {
+            setRegisterName(event.target.value);
+          }}
+        />
+        <input
+        type="email"
           placeholder="Email..."
           onChange={(event) => {
             setRegisterEmail(event.target.value);
           }}
         />
         <input
+        type="password"
           placeholder="Password..."
           onChange={(event) => {
             setRegisterPassword(event.target.value);
@@ -73,12 +98,14 @@ function Log() {
       <div>
         <h3> Login </h3>
         <input
+        type="email"
           placeholder="Email..."
           onChange={(event) => {
             setLoginEmail(event.target.value);
           }}
         />
         <input
+        type="password"
           placeholder="Password..."
           onChange={(event) => {
             setLoginPassword(event.target.value);
