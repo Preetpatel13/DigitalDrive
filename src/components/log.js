@@ -1,8 +1,9 @@
+// import { sessionStorage } from 'window';
 import { useState } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
 import "../App.css";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
-import { auth,db } from "../Firebase/base.js";
+import { auth, db } from "../Firebase/base.js";
 
 function Log() {
   const [registerName, setRegisterName] = useState("");
@@ -24,7 +25,10 @@ function Log() {
         registerEmail,
         registerPassword
       );
-      console.log('User Created'+':  :'+user);
+      sessionStorage.setItem('uName', registerName);
+      sessionStorage.setItem('uEmail', registerEmail);
+
+      console.log('User Created' + ':  :' + user);
       try {
         const docRef = await addDoc(collection(db, "user_data"), {
           email: registerEmail,
@@ -40,14 +44,17 @@ function Log() {
   };
 
   const login = async () => {
+
     try {
       const user = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      console.log('Logged in as: ' + loginEmail+':  :'+user)
-
+      //session created
+      sessionStorage.setItem('uName', registerName);
+      sessionStorage.setItem('uEmail', registerEmail);
+      console.log('Logged in as: ' + loginEmail + ':  :' + user)
       const docRef = doc(db, "user_data", loginEmail);
       const docSnap = await getDoc(docRef);
 
@@ -78,14 +85,14 @@ function Log() {
           }}
         />
         <input
-        type="email"
+          type="email"
           placeholder="Email..."
           onChange={(event) => {
             setRegisterEmail(event.target.value);
           }}
         />
         <input
-        type="password"
+          type="password"
           placeholder="Password..."
           onChange={(event) => {
             setRegisterPassword(event.target.value);
@@ -98,14 +105,14 @@ function Log() {
       <div>
         <h3> Login </h3>
         <input
-        type="email"
+          type="email"
           placeholder="Email..."
           onChange={(event) => {
             setLoginEmail(event.target.value);
           }}
         />
         <input
-        type="password"
+          type="password"
           placeholder="Password..."
           onChange={(event) => {
             setLoginPassword(event.target.value);

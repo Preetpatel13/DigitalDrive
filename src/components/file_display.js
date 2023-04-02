@@ -1,13 +1,19 @@
-
 import React, { useEffect, useState } from "react";
 import { ref, getDownloadURL } from "firebase/storage";
-import { storageRef, listAll } from "../Firebase/base"
+import { storageRef, listAll } from "../Firebase/base";
+import styled from 'styled-components';
+// const InputField = styled.input`
+//   padding: 4px;
+//   text-align: left;
+//   font-size: 16px;
+//   `;
 
 function FileDisplay() {
     const [files, setFiles] = useState([]);
 
     useEffect(() => {
-        const userID = "preet123";
+        // const userID = sessionStorage.getItem('uName')
+        const userID = 'preet123'
         const listRef = ref(storageRef, userID + "/");
         listAll(listRef)
             .then((res) => {
@@ -17,22 +23,26 @@ function FileDisplay() {
                         url: getDownloadURL(item),
                     };
                 });
-                setFiles(fileData);
+                setFiles(fileData + ' '+ sessionStorage.getItem('uName'));
             })
-            .catch((err) => console.log('Error: '+err));
+            .catch((err) => alert('Error: '+err));
     }, []);
-
-    return (
-        <div>
-          {files.map((file, index) => (
-            <div key={index}>
-              <a href={file.url} download={file.name}>
-                {file.name}
-              </a>
-            </div>
-          ))}
-        </div>
-      );
+if(sessionStorage.getItem('uName')!=' '){
+  return (
+    <div>
+      <ul>
+      {files.map((file, index) => (
+          <li><a href={file.url} download={file.name}>
+            {file.name}
+          </a></li>
+      ))}
+      
+      </ul>
+    </div>
+  );
+}else{
+  return (alert('Please Login...!'));
+}
     
 }
 

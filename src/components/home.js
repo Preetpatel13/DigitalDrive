@@ -12,7 +12,7 @@ function BasicExample() {
   return (
     <div className="main">
       <Navbar />
-      <FileDisplay />
+      
       <Sidebar></Sidebar>
       <Ourteam />
     </div>
