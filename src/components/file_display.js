@@ -9,41 +9,46 @@ import styled from 'styled-components';
 //   `;
 
 function FileDisplay() {
-    const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState([]);
 
-    useEffect(() => {
-        // const userID = sessionStorage.getItem('uName')
-        const userID = 'preet123'
-        const listRef = ref(storageRef, userID + "/");
-        listAll(listRef)
-            .then((res) => {
-                const fileData = res.items.map((item) => {
-                    return {
-                        name: item.name,
-                        url: getDownloadURL(item),
-                    };
-                });
-                setFiles(fileData + ' '+ sessionStorage.getItem('uName'));
-            })
-            .catch((err) => alert('Error: '+err));
-    }, []);
-if(sessionStorage.getItem('uName')!=' '){
-  return (
-    <div>
-      <ul>
-      {files.map((file, index) => (
-          <li><a href={file.url} download={file.name}>
+  useEffect(() => {
+    const userID = sessionStorage.getItem('uEmail')
+    // const userID = 'preet123'
+    const listRef = ref(storageRef, userID + "/");
+    listAll(listRef)
+      .then((res) => {
+        const fileData = res.items.map((item) => {
+          return {
+            name: item.name,
+            url: getDownloadURL(item),
+          };
+        });
+        setFiles(fileData);
+        console.log('sessiondata:'+sessionStorage.getItem('uName'))
+      })
+      .catch((err) => alert('Error: ' + err));
+  }, []);
+  // if (sessionStorage.getItem('uName') !== null) {
+    return (
+      <div>
+        {files.map((file, index) => (
+          <div key={index}><a href={file.url} download={file.name}>
             {file.name}
-          </a></li>
-      ))}
-      
-      </ul>
-    </div>
-  );
-}else{
-  return (alert('Please Login...!'));
-}
-    
+          </a></div>
+        ))}
+      </div>
+    );
+  // } else {
+  //   return (
+
+  //     <div>
+  //       <script>alert('Please Login...!')</script>
+  //       <p>No Files Available / Login </p>
+  //     </div>
+
+  //   );
+  // }
+
 }
 
 export default FileDisplay;

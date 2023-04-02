@@ -6,12 +6,15 @@ import Contact from "./contact";
 import up_file from './logos/up_file.gif';
 import up_folder from './logos/up_folder.png';
 import FileDisplay from './file_display';
+import { auth } from "../Firebase/base";
+import { Auth } from "firebase/auth";
 import File from './fileupload'
 import shared_me from './logos/shared_me.png';
 import mygif from './mygif.gif'
 
 const sidebar = () => {
   var uName = sessionStorage.getItem('uName');
+  // const uName = Auth().currentUser
   
   return (
     <div className="sidebar">

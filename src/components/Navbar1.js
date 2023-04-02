@@ -4,9 +4,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import Logo from './logo.jpg';
 function Navbar1({handleLoginClick}) {
-    const handleClick = () => {
-      handleLoginClick();
-    };
+    // const handleClick = () => {
+    //   handleLoginClick();
+    // };
   
     return (
       <div className="header">
@@ -18,7 +18,7 @@ function Navbar1({handleLoginClick}) {
           <input className="search" type="text" placeholder="Search in drive" />
   
         <Link to="/log" className="login-link">
-            <button className="login-button" onClick={handleClick}>
+            <button className="login-button" /*onClick={handleClick}*/>
               Login
             </button>
         </Link>

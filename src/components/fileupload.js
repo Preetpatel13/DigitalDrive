@@ -4,7 +4,7 @@ import './fileupload.css'
 //import {setFileUrl} from 'firebase'
 import { app, storage, storageRef, ref, uploadBytes } from '../Firebase/base.js'
 function File() {
-    const userID = sessionStorage.getItem('uName');
+    const userID = sessionStorage.getItem('uEmail');
     const onFileChange = async (e) => {
         const file = e.target.files[0];
         //  const storageRef = app.storage().ref();
