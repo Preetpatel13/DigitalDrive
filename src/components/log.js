@@ -1,11 +1,12 @@
-// import { sessionStorage } from 'window';
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "firebase/auth";
-import "../App.css";
-import { collection, setDoc, doc, getDoc } from "firebase/firestore";
-import { auth, db } from "../Firebase/base.js";
-import './log.css';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+} from "firebase/auth";
+import "./log.css";
+import { auth } from "../Firebase/base.js";
 
 function Log() {
   const [registerName, setRegisterName] = useState("");
@@ -82,100 +83,54 @@ function Log() {
   };
 
   return (
-    <div className="App">
-      <div>
-        <h3> Register User </h3>
+    <div className="log-container">
+      <div className="register-container">
+        <h3 className="register-title"> Register User </h3>
         <input
-          type="text"
-          placeholder="Name..."
-          onChange={(event) => {
-            setRegisterName(event.target.value);
-          }}
-        />
-        <input
-          type="email"
           placeholder="Email..."
+          className="register-email"
           onChange={(event) => {
             setRegisterEmail(event.target.value);
           }}
         />
         <input
-          type="password"
           placeholder="Password..."
+          type="password"
+          className="register-password"
           onChange={(event) => {
             setRegisterPassword(event.target.value);
           }}
         />
 
-        <button onClick={register}> Create User</button>
+        <button onClick={register} className="register-button"> Create User</button>
       </div>
 
-      <div>
-        <h3> Login </h3>
+      <div className="login-container">
+        <h3 className="login-title"> Login </h3>
         <input
-          type="email"
           placeholder="Email..."
+          className="login-email"
           onChange={(event) => {
             setLoginEmail(event.target.value);
           }}
         />
         <input
-          type="password"
           placeholder="Password..."
+          className="login-password" type="password"
           onChange={(event) => {
             setLoginPassword(event.target.value);
           }}
         />
 
-        <button onClick={login}> Login</button>
+        <button onClick={login} className="login-button"> Login</button>
       </div>
 
-      <h4> User Logged In: </h4>
-      {user?.email}
-      <button href='/' >Back to Home</button>
-      {/* <button onClick={}>Home</button> */}
+      <h4 className="user-title"> User Logged In: </h4>
+      <div className="user-email">{user?.email}</div>
 
-      <button onClick={logout}> Sign Out </button>
+      <button onClick={logout} className="logout-button"> Sign Out </button>
     </div>
   );
 }
 
 export default Log;
-
-/*
-
-Here are the session related functions in Firebase Authentication:
-
-firebase.auth().setPersistence(persistence)
-This function is used to set the persistence state for the current user. It takes a single parameter persistence, which can be one of the following values:
-firebase.auth.Auth.Persistence.NONE
-firebase.auth.Auth.Persistence.LOCAL
-firebase.auth.Auth.Persistence.SESSION
-firebase.auth().onAuthStateChanged(nextOrObserver, error, completed)
-This function is used to listen for changes to the user's authentication state. It takes three parameters:
-nextOrObserver: A function or observer object that is called when the user's authentication state changes.
-error: A function that is called when an error occurs.
-completed: A function that is called when the listener is removed.
-firebase.auth().currentUser
-This property returns the currently signed-in user.
-
-firebase.auth().signOut()
-This function signs out the current user.
-
-firebase.auth().signInWithRedirect(provider)
-This function starts the OAuth sign-in flow by redirecting the user to the identity provider's sign-in page.
-
-firebase.auth().signInWithPopup(provider)
-This function starts the OAuth sign-in flow by opening a pop-up window.
-
-firebase.auth().signInWithEmailAndPassword(email, password)
-This function signs in a user with their email address and password.
-
-firebase.auth().createUserWithEmailAndPassword(email, password)
-This function creates a new user account with the given email address and password.
-
-firebase.auth().fetchSignInMethodsForEmail(email)
-This function retrieves the list of sign-in methods available for the given email address.
-
-firebase.auth().sendPasswordResetEmail(email)
-This function sends a password reset email to the given email address.*/
