@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthState
 import "../App.css";
 import { collection, setDoc, doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../Firebase/base.js";
+import './log.css';
 
 function Log() {
   const [registerName, setRegisterName] = useState("");
